@@ -1,0 +1,18 @@
+# Grafana datasource config
+apiVersion: 1
+deleteDatasources:
+  - name: InfluxQA
+    orgId: 1
+
+datasources:
+  - name: InfluxQA
+    type: influxdb
+    access: proxy
+    url: http://influxdb:8086
+    isDefault: true
+    database: ${INFLUXDB_DB}
+    user: ${INFLUXDB_ADMIN_USER}
+    secureJsonData:
+      password: ${INFLUXDB_ADMIN_PASSWORD}
+    version: 1
+    readOnly: false

@@ -1,0 +1,12 @@
+# Grafana dashboards provisioning
+apiVersion: 1
+
+providers:
+  - name: 'qa-dashboards'
+    orgId: 1
+    folder: 'QA Dashboards'
+    type: file
+    options:
+      path: /var/lib/grafana/dashboards
+    disableDeletion: false
+    editable: false

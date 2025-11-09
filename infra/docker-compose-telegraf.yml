@@ -1,0 +1,15 @@
+# docker-compose-telegraf.yml
+services:
+  telegraf:
+    image: telegraf:1.25
+    container_name: telegraf
+    restart: unless-stopped
+    volumes:
+      - ./telegraf:/etc/telegraf:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro  # ← important
+    networks:
+      - infra_default
+
+networks:
+  infra_default:
+    external: true

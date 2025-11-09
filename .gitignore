@@ -1,0 +1,26 @@
+# === JMeter reports & data ===
+reports/
+*.jtl
+*.log
+*.tmp
+*.bak
+*.html
+
+# === Docker volumes (local data) ===
+infra/influxdb-data/
+infra/grafana-data/
+infra/telegraf/telegraf_conf_backup/
+
+# === Secrets et variables d'environnement ===
+infra/.env
+.env
+
+# === IDE / OS files ===
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# === Autres fichiers temporaires ===
+*.zip
+*.tar

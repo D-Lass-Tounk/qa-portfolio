@@ -1,0 +1,19 @@
+services:
+  jmeter-controller:
+    image: justb4/jmeter:5.6.3
+    container_name: jmeter-controller
+    # Monte tes plans et les rapports
+    volumes:
+      - "E:/qa-portfolio/jmeter:/test"
+      - "E:/qa-portfolio/reports:/reports"
+    environment:
+      # Ajuste mémoire si besoin
+      - JVM_ARGS=-Xms1g -Xmx2g -XX:+HeapDumpOnOutOfMemoryError
+      - TZ=Europe/Paris
+    networks:
+      - infra_default
+    # On laisse l'entrypoint par défaut ; on passera la commande à l'exécution
+
+networks:
+  infra_default:
+    external: true
