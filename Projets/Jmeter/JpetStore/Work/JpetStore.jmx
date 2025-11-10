@@ -560,23 +560,18 @@
         </hashTree>
       </hashTree>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Test TR02_NewAccount">
-        <intProp name="ThreadGroup.num_threads">1</intProp>
+        <intProp name="ThreadGroup.num_threads">3</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
-        <stringProp name="ThreadGroup.on_sample_error">stopthread</stringProp>
+        <stringProp name="ThreadGroup.on_sample_error">stoptestnow</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
-          <stringProp name="LoopController.loops">1</stringProp>
+          <stringProp name="LoopController.loops">3</stringProp>
           <boolProp name="LoopController.continue_forever">false</boolProp>
         </elementProp>
       </ThreadGroup>
       <hashTree>
         <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
           <collectionProp name="Arguments.arguments">
-            <elementProp name="username" elementType="Argument">
-              <stringProp name="Argument.name">username</stringProp>
-              <stringProp name="Argument.value">QaEnginner${__Random(3,100000,)}</stringProp>
-              <stringProp name="Argument.metadata">=</stringProp>
-            </elementProp>
             <elementProp name="password" elementType="Argument">
               <stringProp name="Argument.name">password</stringProp>
               <stringProp name="Argument.value">QaEnginner2025@</stringProp>
@@ -815,9 +810,9 @@
               <hashTree/>
             </hashTree>
           </hashTree>
-          <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="ET03_Register" enabled="true"/>
+          <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="ET03_Register"/>
           <hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="046 - /actions/Account.action (Register)" enabled="true">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="046 - /actions/Account.action (Register)">
               <stringProp name="HTTPSampler.domain">${HOST}</stringProp>
               <stringProp name="HTTPSampler.port">${PORT}</stringProp>
               <stringProp name="HTTPSampler.protocol">${PROTOCOLE}</stringProp>
@@ -923,7 +918,29 @@
           </hashTree>
           <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="ET04_SaveAccount"/>
           <hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="065 - /actions/Account.action (SaveAccount)" enabled="true">
+            <JSR223PreProcessor guiclass="TestBeanGUI" testclass="JSR223PreProcessor" testname="JSR223 PreProcessor">
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="script">// Partie statique du nom
+def prefix = &quot;QaEnginner&quot;
+
+// Partie aléatoire entre 3 et 100000 (inclus)
+def random = 3 + new Random().nextInt(100000 - 3 + 1)
+
+// Concaténation du username complet
+def username = &quot;${prefix}${random}&quot;
+
+// Enregistre la variable dans JMeter (disponible sous ${username})
+vars.put(&quot;username&quot;, username)
+
+// (Optionnel) log pour debug
+log.info(&quot;&gt;&gt; Username généré : ${username}&quot;)
+</stringProp>
+              <stringProp name="scriptLanguage">groovy</stringProp>
+            </JSR223PreProcessor>
+            <hashTree/>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="065 - /actions/Account.action (SaveAccount)">
               <stringProp name="TestPlan.comments">Detected the start of a redirect chain</stringProp>
               <stringProp name="HTTPSampler.domain">${HOST}</stringProp>
               <stringProp name="HTTPSampler.port">${PORT}</stringProp>
@@ -974,7 +991,7 @@
                   <elementProp name="account.email" elementType="HTTPArgument">
                     <boolProp name="HTTPArgument.always_encode">true</boolProp>
                     <stringProp name="Argument.name">account.email</stringProp>
-                    <stringProp name="Argument.value">Name${username}@gmail.com</stringProp>
+                    <stringProp name="Argument.value">${username}@gmail.com</stringProp>
                     <stringProp name="Argument.metadata">=</stringProp>
                     <boolProp name="HTTPArgument.use_equals">true</boolProp>
                   </elementProp>
@@ -1155,7 +1172,7 @@
               </ResponseAssertion>
               <hashTree/>
             </hashTree>
-            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="066 - /actions/Catalog.action (SaveAccount)" enabled="true">
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="066 - /actions/Catalog.action (SaveAccount)">
               <stringProp name="HTTPSampler.domain">${HOST}</stringProp>
               <stringProp name="HTTPSampler.port">${PORT}</stringProp>
               <stringProp name="HTTPSampler.protocol">${PROTOCOLE}</stringProp>
@@ -1244,14 +1261,11 @@
               </ResponseAssertion>
               <hashTree/>
             </hashTree>
-          </hashTree>
-        </hashTree>
-      </hashTree>
-      <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor">
-        <stringProp name="cacheKey">true</stringProp>
-        <stringProp name="filename"></stringProp>
-        <stringProp name="parameters"></stringProp>
-        <stringProp name="script">// Chemin EXACT demandé
+            <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor">
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="script">// Chemin EXACT demandé
 def outputPath = &apos;E:/qa-portfolio/Projets/Jmeter/JpetStore/Work/Data/users_created.csv&apos;
 
 // Récupère les variables
@@ -1274,9 +1288,12 @@ if (!f.exists()) {
 def esc = { s -&gt; &apos;&quot;&apos; + s.replace(&apos;&quot;&apos;,&apos;&quot;&quot;&apos;) + &apos;&quot;&apos; }
 f.withWriterAppend(&apos;UTF-8&apos;){ w -&gt; w.writeLine(&quot;${esc(u)},${esc(pw)}&quot;) }
 </stringProp>
-        <stringProp name="scriptLanguage">groovy</stringProp>
-      </JSR223PostProcessor>
-      <hashTree/>
+              <stringProp name="scriptLanguage">groovy</stringProp>
+            </JSR223PostProcessor>
+            <hashTree/>
+          </hashTree>
+        </hashTree>
+      </hashTree>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Test TR03_AddToCar" enabled="false">
         <intProp name="ThreadGroup.num_threads">1</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
