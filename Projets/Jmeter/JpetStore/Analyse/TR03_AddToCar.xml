@@ -1,0 +1,17 @@
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
+1762974275245,261,001 -  (Accueil) - /actions/Catalog.action,200,,,text,true,,5659,505,0,0,https://petstore.octoperf.com/actions/Catalog.action,260,0,220
+1762974275769,215,004 -  (Accueil) - /images/logo-topbar.svg,200,,,text,true,,16585,580,0,0,https://petstore.octoperf.com/images/logo-topbar.svg,194,0,154
+1762974295206,217,021 -  (SignIn) - /actions/Account.action;jsessionid=FF32AA71E072F4FCDA9192E48C23533E,200,,,text,true,,4092,684,0,0,https://petstore.octoperf.com/actions/Account.action;jsessionid=FF32AA71E072F4FCDA9192E48C23533E?signonForm=,217,0,180
+1762974336549,182,022 -  (Login) - /actions/Account.action,302,,,,true,,225,1050,0,0,https://petstore.octoperf.com/actions/Account.action,182,0,142
+1762974336739,222,023 -  (Login) - /actions/Catalog.action,200,,,text,true,,5152,684,0,0,https://petstore.octoperf.com/actions/Catalog.action,222,0,182
+1762974366298,224,024 -  (AccesAnimals) - /actions/Catalog.action,200,,,text,true,,3798,659,0,0,https://petstore.octoperf.com/actions/Catalog.action?viewCategory=&categoryId=BIRDS,223,0,182
+1762974377596,371,025 -  (SelectProduct) - /,400,Bad Request,,text,false,,468,611,0,0,https://push.services.mozilla.com/,370,0,296
+1762974379964,165,026 -  (SelectProduct) - /actions/Catalog.action,200,,,text,true,,3969,691,0,0,https://petstore.octoperf.com/actions/Catalog.action?viewProduct=&productId=AV-CB-01,164,0,117
+1762974396852,228,027 -  (SelectItem) - /actions/Catalog.action,200,,,text,true,,3956,684,0,0,https://petstore.octoperf.com/actions/Catalog.action?viewItem=&itemId=EST-18,228,0,184
+1762974409690,156,029 -  (AddToCar) - /v1/ads,200,OK,,text,true,,12189,561,0,0,https://ads.mozilla.org/v1/ads,153,0,110
+1762974410942,275,030 -  (AddToCar) - /actions/Cart.action,200,,,text,true,,4816,685,0,0,https://petstore.octoperf.com/actions/Cart.action?addItemToCart=&workingItemId=EST-18,275,0,206
+1762974427199,198,031 -  (ProceedToChekout) - /actions/Order.action,200,,,text,true,,5573,673,0,0,https://petstore.octoperf.com/actions/Order.action?newOrderForm=,197,0,155
+1762974453935,261,032 -  (ValidePaimentDetails) - /actions/Order.action,200,,,text,true,,4739,1325,0,0,https://petstore.octoperf.com/actions/Order.action,260,0,160
+1762974468759,250,033 -  (ConfirmOrder) - /actions/Order.action,200,,,text,true,,5447,649,0,0,https://petstore.octoperf.com/actions/Order.action?newOrder=&confirmed=true,249,0,192
+1762974484050,247,034 -  (SignOut) - /actions/Account.action,302,,,,true,,225,660,0,0,https://petstore.octoperf.com/actions/Account.action?signoff=,247,0,208
+1762974484307,210,035 -  (SignOut) - /actions/Catalog.action,200,,,text,true,,5043,651,0,0,https://petstore.octoperf.com/actions/Catalog.action,209,0,167
